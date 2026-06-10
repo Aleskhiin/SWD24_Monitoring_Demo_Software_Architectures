@@ -115,7 +115,7 @@ demo_votes_total
 
 ### Architekturdiagramm
 
-![architecture-overview.png](Images/architecture-overview.png)
+![architecture-overview.png](images/architecture-overview.png)
 
 ---
 
@@ -147,7 +147,7 @@ monitoring-demo
 
 ### Projektstruktur Screenshot
 
-![project-structure.png](Images/project-structure.png)
+![project-structure.png](images/project-structure.png)
 
 ---
 
@@ -215,7 +215,7 @@ http://localhost:3000
 
 ## Dashboard Vorschau
 
-![grafana-dashboard.png](Images/grafana-dashboard.png)
+![grafana-dashboard.png](images/grafana-dashboard.png)
 
 ---
 

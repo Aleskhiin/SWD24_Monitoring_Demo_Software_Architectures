@@ -110,7 +110,7 @@ java -version
 
 ## Screenshot
 
-![java-version.png](Images/java-version.png)
+![java-version.png](images/java-version.png)
 
 ---
 
@@ -209,7 +209,7 @@ Prometheus
 
 ## Screenshot
 
-![spring-initializr.png](Images/spring-initializr.png)
+![spring-initializr.png](images/spring-initializr.png)
 
 ---
 
@@ -243,7 +243,7 @@ gradlew.bat
 
 ## Screenshot
 
-![project-structure.png](Images/project-structure.png)
+![project-structure.png](images/project-structure.png)
 
 ---
 
@@ -313,7 +313,7 @@ src/main/java/at/fhj/monitoringdemo
 
 ## Screenshot
 
-![monitoring-demo-application.png](Images/monitoring-demo-application.png)
+![monitoring-demo-application.png](images/monitoring-demo-application.png)
 
 ---
 
@@ -695,7 +695,7 @@ docker compose down
 
 ## Screenshot
 
-![docker_container.png](Images/docker_container.png)
+![docker_container.png](images/docker_container.png)
 ---
 
 ---
@@ -744,7 +744,7 @@ http://localhost:8080/api/hello
 
 ## Screenshot
 
-![api-endpoints-hello.png](Images/api-endpoints-hello.png)
+![api-endpoints-hello.png](images/api-endpoints-hello.png)
 
 ---
 
@@ -774,7 +774,7 @@ UP
 
 ## Screenshot
 
-![prometheus-targets.png](Images/prometheus-targets.png)
+![prometheus-targets.png](images/prometheus-targets.png)
 
 ---
 
@@ -788,7 +788,7 @@ demo_hello_requests_total
 
 ## Screenshot
 
-![prometheus-query-demo-hello.png](Images/prometheus-query-demo-hello.png)
+![prometheus-query-demo-hello.png](images/prometheus-query-demo-hello.png)
 
 ---
 
@@ -830,7 +830,7 @@ http://prometheus:9090
 
 ## Screenshot
 
-![grafana-datasource.png](Images/grafana-datasource.png)
+![grafana-datasource.png](images/grafana-datasource.png)
 
 ---
 
@@ -917,7 +917,7 @@ Max: 100
 
 ## Dashboard Screenshot
 
-![grafana-dashboard.png](Images/grafana-dashboard.png)
+![grafana-dashboard.png](images/grafana-dashboard.png)
 
 ---
 

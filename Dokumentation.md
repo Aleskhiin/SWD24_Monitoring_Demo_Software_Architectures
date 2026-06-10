@@ -259,7 +259,7 @@ Die entwickelte Lösung besteht aus vier Hauptkomponenten.
 
 ## Architekturdiagramm
 
-![architecture-overview.png](Images/architecture-overview.png)
+![architecture-overview.png](images/architecture-overview.png)
 
 ---
 
@@ -624,7 +624,7 @@ Diese Information wird häufig von Kubernetes oder Load Balancern verwendet.
 
 ## Screenshot
 
-![grafana-dashboard_overview.png](Images/grafana-dashboard.png)
+![grafana-dashboard_overview.png](images/grafana-dashboard.png)
 
 ---
 
@@ -754,7 +754,7 @@ Business Votes
 
 ## Screenshot
 
-![business-votes-gauge.png](Images/business-votes-gauge.png)
+![business-votes-gauge.png](images/business-votes-gauge.png)
 
 ---
 
@@ -978,11 +978,11 @@ Dadurch entsteht ein vollständiger Überblick über den Zustand der Anwendung.
 
 ## Screenshots
 
-![prometheus-targets.png](Images/prometheus-targets.png)
+![prometheus-targets.png](images/prometheus-targets.png)
 
-![prometheus-query-demo-hello.png](Images/prometheus-query-demo-hello.png)
+![prometheus-query-demo-hello.png](images/prometheus-query-demo-hello.png)
 
-![grafana-dashboard.png](Images/grafana-dashboard.png)
+![grafana-dashboard.png](images/grafana-dashboard.png)
 
 ---
 
@@ -1149,7 +1149,7 @@ Beispiele:
 
 ## Screenshot
 
-![future_architure.png](Images/future_architure.png)
+![future_architure.png](images/future_architure.png)
 
 ---
 
@@ -1349,11 +1349,11 @@ Dadurch entsteht automatisch eine Prometheus-Metrik.
 
 ## Screenshots
 
-![monitoring-demo-application.png](Images/monitoring-demo-application.png)
+![monitoring-demo-application.png](images/monitoring-demo-application.png)
 
-![demo-controller-code.png](Images/demo-controller-code.png)
+![demo-controller-code.png](images/demo-controller-code.png)
 
-![demo-service-code.png](Images/demo-service-code.png)
+![demo-service-code.png](images/demo-service-code.png)
 
 ---
 
