@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitoring Demo Präsentation</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #1f2937;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --line: rgba(255,255,255,.14);
+      --shadow: 0 24px 80px rgba(0,0,0,.38);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+    }
+
+    .deck {
+      width: min(100vw, 177.78vh);
+      height: min(56.25vw, 100vh);
+      position: relative;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(56,189,248,.2), transparent 28%),
+        radial-gradient(circle at 82% 88%, rgba(34,197,94,.16), transparent 26%),
+        linear-gradient(135deg, #0f172a 0%, #111827 52%, #0b1120 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: 54px 70px;
+    }
+
+    .slide.active {
+      display: grid;
+      animation: fade .2s ease-out;
+    }
+
+    @keyframes fade {
+      from { opacity: .3; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 1px solid var(--line);
+      pointer-events: none;
+    }
+
+    .slide h1,
+    .slide h2 {
+      margin: 0;
+      letter-spacing: 0;
+      line-height: 1.04;
+    }
+
+    .slide h1 {
+      font-size: 54px;
+      max-width: 930px;
+    }
+
+    .slide h2 {
+      font-size: 43px;
+      margin-bottom: 24px;
+    }
+
+    .slide p,
+    .slide li {
+      color: var(--muted);
+      font-size: 26px;
+      line-height: 1.38;
+    }
+
+    .slide p {
+      margin: 0 0 16px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 30px;
+    }
+
+    li {
+      margin: 12px 0;
+    }
+
+    .title-layout {
+      align-content: center;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 42px;
+    }
+
+    .title-layout .subtitle {
+      margin-top: 22px;
+      font-size: 28px;
+      color: var(--accent);
+    }
+
+    .split {
+      grid-template-columns: .86fr 1.14fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .split-wide {
+      grid-template-columns: .72fr 1.28fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .top-image {
+      grid-template-rows: auto 1fr;
+      gap: 22px;
+    }
+
+    .center {
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .text-panel {
+      padding: 28px 30px;
+      border-left: 5px solid var(--accent);
+      background: rgba(15, 23, 42, .54);
+    }
+
+    .visual {
+      width: 100%;
+      min-height: 0;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 16px 42px rgba(0,0,0,.24);
+      overflow: hidden;
+    }
+
+    .visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .visual.dark img {
+      background: #111827;
+    }
+
+    .visual.cover {
+      height: 420px;
+    }
+
+    .visual.medium {
+      height: 460px;
+    }
+
+    .visual.short {
+      height: 235px;
+    }
+
+    .visual.tall {
+      height: 540px;
+    }
+
+    .visual.full {
+      height: 500px;
+    }
+
+    .image-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .demo-stack .visual {
+      height: 175px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-self: stretch;
+    }
+
+    .image-grid .visual {
+      height: 230px;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      width: 100%;
+      max-width: 940px;
+    }
+
+    .concept-grid .visual {
+      height: 220px;
+    }
+
+    .concept-layout {
+      grid-template-rows: auto auto 1fr;
+      gap: 18px;
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .smart-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: 100%;
+      max-width: 1080px;
+    }
+
+    .smart-list p {
+      margin: 0;
+      padding: 18px 20px;
+      min-height: 92px;
+      display: grid;
+      align-items: center;
+      border-top: 4px solid var(--accent);
+      background: rgba(15, 23, 42, .62);
+      font-size: 21px;
+      line-height: 1.26;
+    }
+
+    .final-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .final-grid .visual {
+      height: 285px;
+    }
+
+    .final-layout {
+      grid-template-rows: auto auto 1fr;
+      gap: 18px;
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .final-layout .smart-list {
+      max-width: 1140px;
+    }
+
+    .final-layout .smart-list p {
+      border-top-color: var(--accent-2);
+      min-height: 104px;
+    }
+
+    .controls {
+      position: absolute;
+      right: 30px;
+      bottom: 24px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      z-index: 5;
+      color: rgba(248,250,252,.8);
+      font-size: 14px;
+      user-select: none;
+    }
+
+    button {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(15, 23, 42, .8);
+      color: var(--text);
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .progress {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 5px;
+      background: rgba(255,255,255,.1);
+      z-index: 4;
+    }
+
+    .bar {
+      height: 100%;
+      width: 10%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width .18s ease;
+    }
+
+    @media (max-width: 900px) {
+      .deck {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .slide {
+        padding: 42px 28px 66px;
+        overflow-y: auto;
+      }
+
+      .slide.active,
+      .title-layout,
+      .split,
+      .split-wide {
+        display: block;
+      }
+
+      .slide h1 { font-size: 38px; }
+      .slide h2 { font-size: 31px; }
+      .slide p,
+      .slide li { font-size: 20px; }
+      .visual,
+      .visual.cover,
+      .visual.medium,
+      .visual.short,
+      .visual.tall,
+      .visual.full,
+      .image-grid .visual,
+      .concept-grid .visual,
+      .final-grid .visual {
+        height: auto;
+        margin-top: 18px;
+      }
+      .image-grid,
+      .concept-grid,
+      .final-grid {
+        grid-template-columns: 1fr;
+      }
+      .visual img {
+        height: auto;
+      }
+    }
+
+    @media print {
+      html,
+      body {
+        height: auto;
+        overflow: visible;
+        background: #fff;
+      }
+      .deck {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+      }
+      .slide,
+      .slide.active {
+        display: grid;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        page-break-after: always;
+      }
+      .controls,
+      .progress {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-label="Monitoring Demo Präsentation">
+    <section class="slide title-layout active">
+      <div>
+        <h1>Monitoring Konzepte mit Demo-Implementierung in modernen Software-Architekturen</h1>
+        <p class="subtitle">Spring Boot • Prometheus • Grafana • Docker Compose</p>
+      </div>
+      <div class="visual cover">
+        <img src="images/architecture-overview.png" alt="">
+      </div>
+    </section>
+
+    <section class="slide split">
+      <div class="text-panel">
+        <h2>Einleitung</h2>
+        <p>Moderne Software-Systeme bestehen häufig aus mehreren Services.</p>
+        <p>Monitoring hilft dabei, Fehler und Performance-Probleme frühzeitig zu erkennen.</p>
+        <p>Besonders wichtig bei Cloud- und Microservice-Architekturen.</p>
+      </div>
+      <div class="visual medium">
+        <img src="images/future_architure.png" alt="">
+      </div>
+    </section>
+
+    <section class="slide split-wide">
+      <div class="text-panel">
+        <h2>Grundlagen von Monitoring</h2>
+        <p>Überwachung von Anwendungen und Infrastruktur.</p>
+        <p>Analyse von Verfügbarkeit, Performance und Fehlern.</p>
+        <p>Visualisierung technischer Daten in Dashboards.</p>
+      </div>
+      <div class="image-stack">
+        <div class="visual short">
+          <img src="images/prometheus-targets.png" alt="">
+        </div>
+        <div class="visual short">
+          <img src="images/grafana-dashboard.png" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section class="slide split">
+      <div class="text-panel">
+        <h2>Monitoring, Logging, Tracing und Alerting</h2>
+        <p>Monitoring: Sammeln technischer Metriken.</p>
+        <p>Logging: Speicherung von Ereignissen und Fehlern.</p>
+        <p>Tracing: Verfolgung von Requests über mehrere Services.</p>
+        <p>Alerting: Automatische Warnungen bei Problemen.</p>
+      </div>
+      <div class="image-grid">
+        <div class="visual"><img src="images/api-endpoints-error.png" alt=""></div>
+        <div class="visual"><img src="images/global-exception-handler-code.png" alt=""></div>
+        <div class="visual"><img src="images/api-endpoints-slow.png" alt=""></div>
+        <div class="visual"><img src="images/health-endpoint.png" alt=""></div>
+      </div>
+    </section>
+
+    <section class="slide concept-layout">
+      <h2>Wichtige Monitoring-Konzepte</h2>
+      <div class="smart-list">
+        <p>Metrics: CPU, RAM, Requests, Antwortzeiten.</p>
+        <p>Health Checks: /health, /live, /ready.</p>
+        <p>Observability kombiniert Metrics, Logs und Traces.</p>
+      </div>
+      <div class="concept-grid">
+        <div class="visual"><img src="images/actuator-prometheus.png" alt=""></div>
+        <div class="visual"><img src="images/prometheus-query-demo-hello.png" alt=""></div>
+        <div class="visual"><img src="images/business-votes-gauge.png" alt=""></div>
+        <div class="visual"><img src="images/grafana-datasource.png" alt=""></div>
+      </div>
+    </section>
+
+    <section class="slide split">
+      <div class="text-panel">
+        <h2>Monitoring in Software-Architekturen</h2>
+        <p>Monolithen: Einfacheres Monitoring.</p>
+        <p>Microservices: Höhere Komplexität.</p>
+        <p>Cloud-native Systeme benötigen kontinuierliche Überwachung.</p>
+      </div>
+      <div class="visual medium">
+        <img src="images/architecture-overview.png" alt="">
+      </div>
+    </section>
+
+    <section class="slide split-wide">
+      <div class="text-panel">
+        <h2>Verwendete Technologien</h2>
+        <ul>
+          <li>Spring Boot</li>
+          <li>Spring Boot Actuator</li>
+          <li>Micrometer</li>
+          <li>Prometheus</li>
+          <li>Grafana</li>
+          <li>Docker Compose</li>
+        </ul>
+      </div>
+      <div class="image-grid">
+        <div class="visual"><img src="images/spring-initializr.png" alt=""></div>
+        <div class="visual"><img src="images/java-version.png" alt=""></div>
+        <div class="visual"><img src="images/docker_container.png" alt=""></div>
+        <div class="visual"><img src="images/monitoring-demo-application.png" alt=""></div>
+      </div>
+    </section>
+
+    <section class="slide split">
+      <div class="text-panel">
+        <h2>Architekturübersicht</h2>
+        <p>Die Spring-Boot-Anwendung stellt Monitoring-Metriken bereit.</p>
+        <p>Prometheus sammelt die Daten regelmäßig ein.</p>
+        <p>Grafana visualisiert die Daten in Dashboards.</p>
+      </div>
+      <div class="visual tall">
+        <img src="images/architecture-overview.png" alt="">
+      </div>
+    </section>
+
+    <section class="slide split-wide">
+      <div class="text-panel">
+        <h2>Demo-Ablauf</h2>
+        <ul>
+          <li>Spring Boot Anwendung starten</li>
+          <li>Prometheus liest /actuator/prometheus</li>
+          <li>Grafana Dashboard anzeigen</li>
+          <li>Requests über /api/hello erzeugen</li>
+          <li>Fehler über /api/error simulieren</li>
+          <li>Monitoring-Daten live beobachten</li>
+        </ul>
+      </div>
+      <div class="image-stack demo-stack">
+        <div class="visual short"><img src="images/api-endpoints-hello.png" alt=""></div>
+        <div class="visual short"><img src="images/api-endpoints-error.png" alt=""></div>
+        <div class="visual short"><img src="images/grafana-dashboard.png" alt=""></div>
+      </div>
+    </section>
+
+    <section class="slide final-layout">
+      <h2>Fazit</h2>
+      <div class="smart-list">
+        <p>Monitoring ist ein zentraler Bestandteil moderner Software-Architekturen.</p>
+        <p>Probleme können früh erkannt und analysiert werden.</p>
+        <p>Spring Boot, Prometheus und Grafana bilden eine leistungsfähige Monitoring-Lösung.</p>
+      </div>
+      <div class="final-grid">
+        <div class="visual"><img src="images/grafana-dashboard.png" alt=""></div>
+        <div class="visual"><img src="images/future_architure.png" alt=""></div>
+      </div>
+    </section>
+
+    <div class="controls" aria-hidden="false">
+      <button type="button" id="prev" aria-label="Vorherige Folie">‹</button>
+      <span id="counter">1 / 10</span>
+      <button type="button" id="next" aria-label="Nächste Folie">›</button>
+    </div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+  </main>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const counter = document.getElementById("counter");
+    const bar = document.getElementById("bar");
+    let index = 0;
+
+    function show(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
+      counter.textContent = `${index + 1} / ${slides.length}`;
+      bar.style.width = `${((index + 1) / slides.length) * 100}%`;
+      window.location.hash = `/${index + 1}`;
+    }
+
+    document.getElementById("prev").addEventListener("click", () => show(index - 1));
+    document.getElementById("next").addEventListener("click", () => show(index + 1));
+    document.addEventListener("keydown", event => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) show(index + 1);
+      if (["ArrowLeft", "PageUp"].includes(event.key)) show(index - 1);
+      if (event.key === "Home") show(0);
+      if (event.key === "End") show(slides.length - 1);
+    });
+
+    const hashSlide = Number((window.location.hash.match(/\d+/) || [1])[0]);
+    show(hashSlide - 1);
+  </script>
+</body>
+</html>
